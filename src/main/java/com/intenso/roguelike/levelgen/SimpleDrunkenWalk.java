@@ -36,7 +36,7 @@ public class SimpleDrunkenWalk implements LevelGen {
 
         int totalFloorsRequired = calculateNumberOfFloors(arr, percentFloors);
         int currentFloors = 1;
-
+        int[] firstPos = pos;
         while (currentFloors < totalFloorsRequired) {
             pos = utils.move(pos, utils.randomValidDir(arr, pos));
             logger.debug("New Pos: {} {}", pos[0], pos[1]);
@@ -45,6 +45,9 @@ public class SimpleDrunkenWalk implements LevelGen {
                 currentFloors++;
             }
         }
+        int[] lastPos = pos;
+        utils.setValue(arr,firstPos,LevelValues.DOWNSTAIRS);
+        utils.setValue(arr,lastPos,LevelValues.UPSTAIRS);
         return arr;
     }
 

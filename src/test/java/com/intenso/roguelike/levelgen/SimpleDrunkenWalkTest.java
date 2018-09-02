@@ -10,8 +10,8 @@ public class SimpleDrunkenWalkTest {
 
     @Test
     public void generateTest() {
-        SimpleDrunkenWalk sdw = new SimpleDrunkenWalk(45,new Random());
-        byte[][] arr = sdw.generate(60,50);
+        SimpleDrunkenWalk sdw = new SimpleDrunkenWalk(65,new Random());
+        byte[][] arr = sdw.generate(75,40);
         AsciiConverter.print(arr);
     }
 

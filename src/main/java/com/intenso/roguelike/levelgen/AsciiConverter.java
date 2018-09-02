@@ -4,6 +4,8 @@ public abstract class AsciiConverter {
 
     private static final char WALL = '#';
     private static final char FLOOR = '.';
+    private static final char UPSTAIRS = '>';
+    private static final char DOWNSTAIRS = '<';
 
     static char convert(byte b) {
         switch (b) {
@@ -11,6 +13,10 @@ public abstract class AsciiConverter {
                 return WALL;
             case LevelValues.FLOOR:
                 return FLOOR;
+            case LevelValues.UPSTAIRS:
+                return UPSTAIRS;
+            case LevelValues.DOWNSTAIRS:
+                return DOWNSTAIRS;
             default:
                 throw new RuntimeException("Unknown byte value, cannot convert " + b);
         }

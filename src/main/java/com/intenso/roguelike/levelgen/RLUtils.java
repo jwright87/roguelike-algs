@@ -67,6 +67,24 @@ public class RLUtils {
         }
     }
 
+    byte getValue(byte[][] arr,int[] pos) {
+        return arr[pos[0]][pos[1]];
+    }
+
+    /**
+     * Sets the value on the map at the given position.
+     * @param arr
+     * @param pos
+     * @param value
+     */
+    void setValue(byte[][] arr,int[] pos,byte value) {
+        arr[pos[0]][pos[1]] = value;
+    }
+
+    public boolean isWalkable(byte[][] arr,int[] pos) {
+        byte val = getValue(arr,pos);
+        return val != LevelValues.WALL;
+    }
     /**
      * Whether a movement in a direction is possible within the map
      * ignoring walls etc. i.e. is within bounds.
