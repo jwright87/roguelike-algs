@@ -21,7 +21,7 @@ public class RLUtils {
             case DOWN:
                 return new int[]{pos[0], pos[1] + 1};
             case LEFT:
-                    return new int[]{pos[0] - 1, pos[1]};
+                return new int[]{pos[0] - 1, pos[1]};
             case RIGHT:
                 return new int[]{pos[0] + 1, pos[1]};
             default:
@@ -46,7 +46,7 @@ public class RLUtils {
     public Dir randomValidDir(byte[][] arr, int[] pos) {
         Dir dir = randomCardinalDirection();
         if (canMoveInDir(arr, pos, dir)) {
-            logger.debug("Random Dir returned: {}",dir);
+            logger.debug("Random Dir returned: {}", dir);
             return dir;
         }
         return randomValidDir(arr, pos);
@@ -67,24 +67,26 @@ public class RLUtils {
         }
     }
 
-    byte getValue(byte[][] arr,int[] pos) {
+    byte getValue(byte[][] arr, int[] pos) {
         return arr[pos[0]][pos[1]];
     }
 
     /**
      * Sets the value on the map at the given position.
+     *
      * @param arr
      * @param pos
      * @param value
      */
-    void setValue(byte[][] arr,int[] pos,byte value) {
+    void setValue(byte[][] arr, int[] pos, byte value) {
         arr[pos[0]][pos[1]] = value;
     }
 
-    public boolean isWalkable(byte[][] arr,int[] pos) {
-        byte val = getValue(arr,pos);
+    public boolean isWalkable(byte[][] arr, int[] pos) {
+        byte val = getValue(arr, pos);
         return val != LevelValues.WALL;
     }
+
     /**
      * Whether a movement in a direction is possible within the map
      * ignoring walls etc. i.e. is within bounds.
@@ -95,7 +97,7 @@ public class RLUtils {
      * @return
      */
     public boolean canMoveInDir(byte[][] arr, int[] pos, Dir dir) {
-       logger.debug("Checking can move at pos {}  {}",pos[0],pos[1]);
+        logger.debug("Checking can move at pos {}  {}", pos[0], pos[1]);
         switch (dir) {
             case UP:
                 if (pos[1] == 0) {
@@ -121,5 +123,15 @@ public class RLUtils {
                 throw new RuntimeException("Unknown direction value: " + dir);
         }
         return true;
+    }
+
+    /**
+     * Returns a random inner position of the matrix, i.e. will not return a wall position.
+     *
+     * @param arr
+     * @return
+     */
+    public int[] getRandomInnerPos(byte[][] arr) {
+        return new int[]{1 + random.nextInt(arr.length - 2), 1 + random.nextInt(arr[0].length - 2)};
     }
 }
